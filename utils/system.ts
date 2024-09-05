@@ -13,7 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { env } from "next-runtime-env";
 
 export function isMultiProjectConsole() {
-  return process.env.NEXT_MULTIPROJECT === "true";
+  return env("NEXT_PUBLIC_MULTIPROJECT") === "true";
 }

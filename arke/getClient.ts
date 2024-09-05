@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-import { Client, HTTPStatusCode, TToken } from "@arkejs/client";
+import { Client, TToken } from "@arkejs/client";
 import { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/react";
 import { getToken } from "next-auth/jwt";
 import { getCookie } from "cookies-next";
 import { getCookieName } from "@/utils/auth";
 import { NextParsedUrlQuery } from "next/dist/server/request-meta";
-import { redirect } from "next/navigation";
+import { env } from "next-runtime-env";
 
 const getServerUrl = () => {
-  if (
-    typeof window == "undefined" &&
-    process.env.NEXT_PUBLIC_ARKE_SERVER_SSR_URL
-  ) {
-    return process.env.NEXT_PUBLIC_ARKE_SERVER_SSR_URL;
-  }
-
-  return process.env.NEXT_PUBLIC_ARKE_SERVER_URL;
+  return env("NEXT_PUBLIC_ARKE_SERVER_URL");
 };
 
 const getProjectId = (context?: {

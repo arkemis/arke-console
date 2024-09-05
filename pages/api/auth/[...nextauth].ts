@@ -20,6 +20,7 @@ import { Client, HTTPStatusCode } from "@arkejs/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { JWT } from "next-auth/jwt";
 import { getClient } from "@/arke/getClient";
+import { env } from "next-runtime-env";
 
 const refreshToken = async (client: Client, token: JWT): Promise<JWT> => {
   return new Promise((resolve) =>
@@ -60,7 +61,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             "credentials",
             {
               headers: {
-                "Arke-Project-Key": process.env.NEXT_PUBLIC_ARKE_PROJECT,
+                "Arke-Project-Key": env("NEXT_PUBLIC_ARKE_PROJECT"),
               },
             }
           );
@@ -75,7 +76,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       },
     }),
   ];
-  const useSecureCookies = process.env.NEXTAUTH_URL?.startsWith("https://");
+  const useSecureCookies = env("NEXTAUTH_URL")?.startsWith("https://");
   const cookiePrefix = useSecureCookies ? "__Secure-" : "";
 
   return await NextAuth(req, res, {
@@ -119,7 +120,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       },
     },
     providers,
-    secret: process.env.NEXTAUTH_SECRET,
+    secret: env("NEXTAUTH_SECRET"),
     pages: {
       signIn: "/login",
       signOut: "/logout",

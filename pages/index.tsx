@@ -46,6 +46,7 @@ import { isMultiProjectConsole } from "@/utils/system";
 import serverErrorRedirect from "@/server/serverErrorRedirect";
 import { getSession } from "next-auth/react";
 import { User } from "next-auth";
+import { env } from "next-runtime-env";
 
 export default function Home(props: { projects: TProject[]; user: User }) {
   const client = useClient();
@@ -173,7 +174,7 @@ export const getServerSideProps: GetServerSideProps = withAuth(
       } else {
         return {
           redirect: {
-            destination: `/${process.env.NEXT_PUBLIC_ARKE_PROJECT}`,
+            destination: `/${env("NEXT_PUBLIC_ARKE_PROJECT")}`,
             permanent: false,
           },
         };

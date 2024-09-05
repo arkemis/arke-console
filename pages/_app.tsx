@@ -19,7 +19,7 @@ import "@/styles/prism.css";
 import type { AppProps } from "next/app";
 import { Inter } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
-import { NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import AppFormConfigProvider from "@/components/AppFormConfigProvider/AppFormConfigProvider";
 import dynamic from "next/dynamic";
 import AppTableConfigProvider from "@/components/Table/AppTableConfigProvider";
