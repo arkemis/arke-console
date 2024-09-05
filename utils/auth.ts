@@ -13,9 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { env } from "next-runtime-env";
 
 function getCookieName() {
-  const secureCookie = process.env.NEXTAUTH_URL?.startsWith("https://");
+  const secureCookie = env("NEXTAUTH_URL")?.startsWith("https://");
   return `${secureCookie ? "__Secure-" : ""}arke-console-auth`;
 }
 

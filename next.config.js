@@ -14,6 +14,12 @@
  * limitations under the License.
  */
 
+const { configureRuntimeEnv } = require("next-runtime-env/build/configure");
+const { makeEnvPublic } = require("next-runtime-env/build/make-env-public");
+
+/* Runtime ENV variables */
+configureRuntimeEnv();
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
