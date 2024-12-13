@@ -98,7 +98,12 @@ export function UserCrud({
   }, [onClose]);
 
   return (
-    <Dialog disableBackdropClose open={!!open} title={title} onClose={handleClose}>
+    <Dialog
+      disableBackdropClose
+      open={!!open}
+      title={title}
+      onClose={handleClose}
+    >
       <Form
         fields={(fields as Field[]) ?? []}
         onSubmit={onFormSubmit}

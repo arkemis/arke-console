@@ -43,7 +43,7 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 RUN apk add --no-cache bash
 RUN chmod +x entrypoint.sh
 
-EXPOSE 3000
-ENV PORT 3000
+EXPOSE 3100
+ENV PORT 3100
 
 ENTRYPOINT ["/app/entrypoint.sh"]

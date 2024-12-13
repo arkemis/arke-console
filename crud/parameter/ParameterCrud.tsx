@@ -125,7 +125,12 @@ export function ParameterAdd({
   }, [onClose]);
 
   return (
-    <Dialog disableBackdropClose open={!!open} title={title} onClose={handleClose}>
+    <Dialog
+      disableBackdropClose
+      open={!!open}
+      title={title}
+      onClose={handleClose}
+    >
       <Select
         value={selectedType}
         values={parameterTypes}

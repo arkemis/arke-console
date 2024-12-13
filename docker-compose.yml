@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  arke-console:
+    container_name: arke-console
+    image: arke-console
+    build: .
+    hostname: 0.0.0.0
+    ports:
+      - "3100:3100"
+    environment:
+      - NEXT_PUBLIC_ARKE_SERVER_URL=http://0.0.0.0:4000
+      - NEXT_PUBLIC_ARKE_PROJECT=<ARKE_PROJECT>
+      - NEXTAUTH_URL=http://localhost:3100/api/auth
+      - NEXTAUTH_SECRET=local_secret
+      - NEXT_MULTIPROJECT=true

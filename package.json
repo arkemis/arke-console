@@ -17,6 +17,7 @@
     "@arkejs/ui": "0.29.0",
     "@heroicons/react": "^2.0.16",
     "cookies-next": "^2.1.1",
+    "date-fns": "^4.1.0",
     "next": "13.2.4",
     "next-auth": "^4.22.1",
     "next-runtime-env": "^1.7.4",

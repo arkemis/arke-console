@@ -104,7 +104,7 @@ export default function Home(props: { projects: TProject[]; user: User }) {
 
         <div className="grid grid-cols-5 gap-4 py-6">
           <div
-            className="relative flex cursor-pointer flex-col items-center justify-center rounded-theme
+            className="rounded-theme relative flex cursor-pointer flex-col items-center justify-center
            border border-neutral bg-gradient-to-b from-background-400 to-background"
             onClick={() => setCrud((p) => ({ ...p, add: true }))}
           >
