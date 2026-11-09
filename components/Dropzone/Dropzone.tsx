@@ -84,7 +84,7 @@ export default function Dropzone(props: DropzoneProps) {
         <section>
           <div
             {...getRootProps({ className: "dropzone" })}
-            className="min-h-20 flex cursor-pointer flex-col items-center justify-center
+            className="flex min-h-20 cursor-pointer flex-col items-center justify-center
            gap-1 rounded-xl border-2 border-dashed border-[rgba(255,255,255,0.2)] p-12 text-center duration-75
            hover:border-primary"
           >

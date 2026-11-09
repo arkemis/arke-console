@@ -44,6 +44,7 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
       credentials: {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
+        otp: { label: "OTP", type: "text" },
       },
       async authorize(credentials) {
         if (credentials) {
@@ -52,18 +53,29 @@ export default async function auth(req: NextApiRequest, res: NextApiResponse) {
             res,
           });
 
-          const authRes = await client.auth.signIn(
+          // client.auth.signIn drops unknown fields, so otp needs a direct call
+          const authRes = await client.auth.httpClient.post(
+            "/auth/signin",
             {
               username: credentials.username,
               password: credentials.password,
+              // credentials arrive as form strings; the BE needs JSON null when there is no OTP
+              otp: credentials.otp || null,
             },
-            "credentials",
             {
               headers: {
                 "Arke-Project-Key": process.env.NEXT_PUBLIC_ARKE_PROJECT,
               },
             }
           );
+
+          // A 200 without access_token means the BE sent the OTP and waits for it.
+          // next-auth exposes the thrown message to signIn() as res.error
+          if (
+            authRes.status === HTTPStatusCode.OK &&
+            !authRes.data.content?.access_token
+          )
+            throw new Error("missing_otp");
 
           // If no error and we have user data, return it
           if (authRes.status === HTTPStatusCode.OK && authRes.data.content) {

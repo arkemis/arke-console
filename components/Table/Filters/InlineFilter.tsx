@@ -57,7 +57,7 @@ function InlineFilter({ filterable = true, ...props }: InlineFilterProps) {
     <>
       <Button
         className={twMerge(
-          "flex w-full cursor-default items-center gap-2 rounded-theme-sm p-2 text-left",
+          "rounded-theme-sm flex w-full cursor-default items-center gap-2 p-2 text-left",
           props.sortable && "cursor-pointer hover:bg-background-400"
         )}
         onClick={onSortChange}

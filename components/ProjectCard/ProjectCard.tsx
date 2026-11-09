@@ -31,7 +31,7 @@ function ProjectCard({
   return (
     <Link
       href={href}
-      className="relative cursor-pointer overflow-hidden rounded-theme border border-neutral bg-gradient-to-b from-background-400 to-background text-center"
+      className="rounded-theme relative cursor-pointer overflow-hidden border border-neutral bg-gradient-to-b from-background-400 to-background text-center"
     >
       <div className="flex h-28 items-center justify-center">
         <Image
