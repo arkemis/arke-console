@@ -17,8 +17,6 @@
 import { Button, Dialog, Input, Spinner } from "@arkejs/ui";
 import React, { useState } from "react";
 
-const OTP_LENGTH = 4;
-
 interface OtpDialogProps {
   open: boolean;
   loading: boolean;
@@ -44,26 +42,20 @@ export default function OtpDialog(props: OtpDialogProps) {
     <Dialog open={open} title="OTP" onClose={handleClose}>
       <form onSubmit={handleSubmit} className="grid gap-4">
         <p className="text-sm text-white/70">
-          We sent a {OTP_LENGTH}-digit verification code to your email. Enter it
-          below to complete the login.
+          We sent a verification code to your email. Enter it below to complete
+          the login.
         </p>
         <Input
           type="text"
           name="otp"
           value={otp}
-          onChange={(e) =>
-            setOtp(e.target.value.replace(/\D/g, "").slice(0, OTP_LENGTH))
-          }
+          onChange={(e) => setOtp(e.target.value.replace(/\D/g, ""))}
           placeholder="OTP"
           autoComplete="one-time-code"
           inputMode="numeric"
           fullWidth
         />
-        <Button
-          color="primary"
-          type="submit"
-          disabled={otp.length !== OTP_LENGTH}
-        >
+        <Button color="primary" type="submit" disabled={!otp}>
           {loading ? <Spinner className="h-5 w-5" /> : "Confirm"}
         </Button>
         <p className="text-center text-xs text-white/50">
