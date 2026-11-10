@@ -32,7 +32,7 @@ function HomepageCard({
   icon: ReactElement;
 }) {
   return (
-    <div className="relative overflow-hidden rounded-theme border border-neutral bg-gradient-to-b from-background-400 to-background p-8">
+    <div className="rounded-theme relative overflow-hidden border border-neutral bg-gradient-to-b from-background-400 to-background p-8">
       {cloneElement(icon, { className: "absolute -right-6 h-[150px]" })}
       <span className="text-sm text-primary">{category}</span>
       <p className="text-lg">{title}</p>

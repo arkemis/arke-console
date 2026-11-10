@@ -30,13 +30,15 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import InputPassword from "@/components/InputPassword/InputPassword";
+import OtpDialog from "@/components/OtpDialog/OtpDialog";
 
 export default function Login({ csrfToken }: { csrfToken: string }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [otpOpen, setOtpOpen] = useState(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loading, setLoading] = useState(false);
-  const { query } = useRouter();
+  const { query, push } = useRouter();
 
   useEffect(() => {
     if (query.error)
@@ -45,14 +47,31 @@ export default function Login({ csrfToken }: { csrfToken: string }) {
       });
   }, [query]);
 
-  function onSignIn(e: any) {
-    e.preventDefault();
+  async function login(otpValue?: string) {
     setLoading(true);
-    void signIn("credentials", {
+    const res = await signIn("credentials", {
+      redirect: false,
       callbackUrl: `${window.location.origin}/`,
       username: username,
       password: password,
+      otp: otpValue ?? "",
     });
+    setLoading(false);
+
+    if (res?.ok && !res.error) {
+      void push(res.url ?? "/");
+      return;
+    }
+    if (res?.error === "missing_otp") {
+      setOtpOpen(true);
+      return;
+    }
+    toast.error("Incorrect username and/or password", { id: "error_login" });
+  }
+
+  function onSignIn(e: any) {
+    e.preventDefault();
+    void login();
   }
 
   return (
@@ -92,6 +111,12 @@ export default function Login({ csrfToken }: { csrfToken: string }) {
           )}
         </Button>
       </form>
+      <OtpDialog
+        open={otpOpen}
+        loading={loading}
+        onClose={() => setOtpOpen(false)}
+        onSubmit={(otp) => void login(otp)}
+      />
     </div>
   );
 }

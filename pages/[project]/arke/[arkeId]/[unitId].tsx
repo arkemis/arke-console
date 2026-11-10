@@ -114,7 +114,7 @@ function UnitDetail({ detail }: { detail: TUnit }) {
       <ul>
         {Object.entries(detail).map(([key, value]) => (
           <li
-            className="mb-2 flex items-center gap-4 rounded-theme bg-background-300 px-4 py-2"
+            className="rounded-theme mb-2 flex items-center gap-4 bg-background-300 px-4 py-2"
             key={key}
           >
             <div

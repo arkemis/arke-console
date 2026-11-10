@@ -47,7 +47,7 @@ function ProjectSidebar() {
 
   return (
     <div className="h-full p-6">
-      <aside className="flex h-full w-full flex-col rounded-theme bg-background-400 p-1">
+      <aside className="rounded-theme flex h-full w-full flex-col bg-background-400 p-1">
         <Link href="/">
           <div className="flex items-center px-2 py-4">
             <Image

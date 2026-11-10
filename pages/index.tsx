@@ -103,7 +103,7 @@ export default function Home(props: { projects: TProject[]; user: User }) {
 
         <div className="grid grid-cols-5 gap-4 py-6">
           <div
-            className="relative flex cursor-pointer flex-col items-center justify-center rounded-theme
+            className="rounded-theme relative flex cursor-pointer flex-col items-center justify-center
            border border-neutral bg-gradient-to-b from-background-400 to-background"
             onClick={() => setCrud((p) => ({ ...p, add: true }))}
           >
@@ -162,8 +162,8 @@ export const getServerSideProps: GetServerSideProps = withAuth(
     const client = getClient(context);
     const session = await getSession(context);
     try {
-      const projects = await client.unit.getAll("arke_project");
       if (isMultiProjectConsole()) {
+        const projects = await client.unit.getAll("arke_project");
         return {
           props: {
             projects: projects.data.content.items,
