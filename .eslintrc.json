@@ -2,6 +2,7 @@
   "plugins": ["prettier"],
   "extends": ["next/core-web-vitals",  "plugin:prettier/recommended"],
   "rules": {
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "off",
+    "@next/next/no-sync-scripts": "off"
   }
 }
